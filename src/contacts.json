@@ -1,0 +1,75 @@
+{
+  "contacts": [
+    {
+      "id": 0,
+      "name": "Alexis Mccormick",
+      "email": "alexis@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 1,
+      "name": "Glenn May",
+      "email": "glenn@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 2,
+      "name": "Jody Macdonald",
+      "email": "jody@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 3,
+      "name": "Jess James",
+      "email": "jess@email.com",
+      "phone": "11 970267855",
+      "favorite": true
+    },
+    {
+      "id": 4,
+      "name": "Morgan Pearce",
+      "email": "morgan@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 5,
+      "name": "Drew Parker",
+      "email": "drew@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 6,
+      "name": "Skylar Alston",
+      "email": "skylar@email.com",
+      "phone": "11 970267855",
+      "favorite": true
+    },
+    {
+      "id": 7,
+      "name": "Taylor Bright",
+      "email": "taylor@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 8,
+      "name": "Ray Landry",
+      "email": "ray@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    },
+    {
+      "id": 9,
+      "name": "Alex Gibson",
+      "email": "alex@email.com",
+      "phone": "11 970267855",
+      "favorite": false
+    }
+  ]
+}
+
