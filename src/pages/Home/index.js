@@ -1,17 +1,59 @@
 import React, { Component } from 'react';
 
+import Modal from 'react-modal';
+
 import { 
   Wrapper, 
   Container, 
   Table, 
-  Button 
+  Button,
+  Form 
 } from './styles';
 
 import Json from '../../contacts.json';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    background: '#F9F9F9',
+    width: '80%',
+    height: 'auto',
+    overflow: 'auto',
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  overlay: {
+    background: 'rgba(0, 0, 0, .4)',
+    transition: 'all ease-in-out .4s'
+  }
+};
+
+Modal.setAppElement(document.getElementById('root'));
+
 class Home extends Component {
   state = {
-    contacts: Json.contacts
+    contacts: Json.contacts,
+    modalIsOpen: false
+  }
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  }
+ 
+  afterOpenModal = () => {
+    console.log(this.state);
+  }
+ 
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
   }
 
   handleFavorite = (id, isFavorite) => {
@@ -39,6 +81,23 @@ class Home extends Component {
 
     return(
       <Wrapper>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal">
+
+          <Form>
+            <h1 id="heading">Alert</h1>
+            <div id="full_description">
+              <p>Description goes here.</p>
+            </div>
+          </Form>
+
+        
+        </Modal>
+
         <Container>
           <Table>
             <tbody>
@@ -68,7 +127,7 @@ class Home extends Component {
             </tbody>
           </Table>
 
-          <Button>
+          <Button onClick={this.openModal}>
             <span>Adicionar contato</span> 
             <i className="fa fa-plus"></i>
           </Button>
