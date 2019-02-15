@@ -7,7 +7,7 @@ import {
   Container, 
   Table, 
   Button,
-  Form 
+  Form
 } from './styles';
 
 import Json from '../../contacts.json';
@@ -41,22 +41,58 @@ Modal.setAppElement(document.getElementById('root'));
 class Home extends Component {
   state = {
     contacts: Json.contacts,
-    modalIsOpen: false
+    modalIsOpen: false,
+    contactName: '',
+    contactEmail: '',
+    contactPhone: '',
+    contactFavorite: false,
+    error: false,
+    errorMessage: ''
   }
 
-  openModal = () => {
-    this.setState({ modalIsOpen: true });
-  }
- 
+  openModal   = () => this.setState({ modalIsOpen: true });
+  closeModal  = () => this.setState({ modalIsOpen: false });
+
   afterOpenModal = () => {
     console.log(this.state);
   }
- 
-  closeModal = () => {
-    this.setState({ modalIsOpen: false });
+
+  handleAddContact = e => {
+    e.preventDefault();
+    if (
+      this.state.contactName === '' || 
+      this.state.contactEmail === ''  || 
+      this.state.contactEmail === '') {
+      this.setState({ error: true, errorMessage: 'Preencha todos os campos!' }); 
+      return;
+    }
+
+    const newContact = {
+      id: Math.random(),
+      name: this.state.contactName,
+      email: this.state.contactEmail,
+      phone: this.state.contactPhone,
+      favorite: false
+    }
+
+    const { contacts } = this.state;
+
+    contacts.push(newContact);
+
+    this.setState({ contacts: contacts });
+
+    this.closeModal();
   }
 
-  handleFavorite = (id, isFavorite) => {
+  handleRemoveContact = (id) => {
+    const { contacts } = this.state;
+
+    const leftOverContacts = contacts.filter(contact => contact.id !== id);
+
+    this.setState({ contacts: leftOverContacts });
+  }
+
+  handleFavoriteContact = (id, isFavorite) => {
     const { contacts } = this.state;
 
     contacts.forEach(contact => {
@@ -68,13 +104,6 @@ class Home extends Component {
     this.setState({ contacts: contacts });
   }
 
-  handleRemove = (id ) => {
-    const { contacts } = this.state;
-
-    const leftOverContacts = contacts.filter(contact => contact.id !== id);
-
-    this.setState({ contacts: leftOverContacts });
-  }
 
   render() {
     const { contacts } = this.state;
@@ -88,11 +117,36 @@ class Home extends Component {
           style={customStyles}
           contentLabel="Example Modal">
 
-          <Form>
-            <h1 id="heading">Alert</h1>
-            <div id="full_description">
-              <p>Description goes here.</p>
-            </div>
+          <Form onSubmit={e => this.handleAddContact(e)}>
+            <i class="fa fa-times" onClick={this.closeModal}></i>
+            <h3>Adicionar Contato</h3>
+
+            <input type="text" 
+              value={this.state.contactName} 
+              onChange={e => this.setState({ contactName: e.target.value })}
+              placeholder="Nome"
+            />
+            
+            <input type="email" 
+              value={this.state.contactEmail}
+              onChange={e => this.setState({ contactEmail: e.target.value })}
+              placeholder="Phone" 
+            />
+            
+            <input type="phone" 
+              value={this.state.contactPhone} 
+              onChange={e => this.setState({ contactPhone: e.target.value })}
+              placeholder="Telefone" 
+            />
+
+            { this.state.error && (
+              <p className="error">{this.state.errorMessage}</p>
+            ) }
+
+            <Button type="submit">
+              <span>Adicionar contato</span> 
+              <i className="fa fa-plus"></i>
+            </Button>
           </Form>
 
         
@@ -110,11 +164,11 @@ class Home extends Component {
                   <td className="email">{contact.email}</td>
                   <td className="phone">{contact.phone}</td>
                   <td className="options">
-                    <button onClick={() => this.handleFavorite(contact.id, contact.favorite)}>
+                    <button onClick={() => this.handleFavoriteContact(contact.id, contact.favorite)}>
                       <i className={contact.favorite ? 'fa fa-star' : 'fa fa-star-o'}></i>
                     </button>
                     
-                    <button onClick={() => this.handleRemove(contact.id)}>
+                    <button onClick={() => this.handleRemoveContact(contact.id)}>
                       <i className="fa fa-trash-o"></i>
                     </button>
                     

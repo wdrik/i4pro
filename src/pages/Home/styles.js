@@ -95,7 +95,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   border: 0;
-  background: #f85601;
+  background: #f15624;
   color: #FFFFFF;
   font-weight: 600;
   font-size: 1.05em;
@@ -110,5 +110,40 @@ export const Button = styled.button`
   i.fa-plus {
     font-size: 0.9em;
     margin-left: 6px;
+  }
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  position: relative;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  flex-direction: column;
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  input {
+    background: #FFF;
+    padding: 15px 20px;
+    border: 0;
+    border-radius: 6px;
+    width: 50%;
+    margin-bottom: 10px;
+  }
+
+  p.error {
+    color: red;
+    margin: 6px 0;
+  }
+
+  i.fa-times {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
   }
 `;
