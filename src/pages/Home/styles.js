@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.section`
   width: 100%;
-  height: 100vh;
+  height: auto;
   background: #F9F9F9;
   padding-top: 100px;
   display: flex;
@@ -20,6 +20,29 @@ export const Wrapper = styled.section`
 export const Container = styled.section`
   width: 100%;
   max-width: 1024px;
+
+  @media only screen and (max-width: 1024px) {
+    padding: 0 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    button.add-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+
+      span {
+        display: none;
+      }
+
+      i.fa-plus {
+        margin: 0;
+      }
+    }
+  }
 `;
 
 export const Table = styled.table`
@@ -42,6 +65,10 @@ export const Table = styled.table`
       &:last-child {
         td {
           border-bottom: 0;
+        }
+
+        td.options {
+          border: 0;
         }
       }
 
@@ -89,6 +116,45 @@ export const Table = styled.table`
 
           i.fa-pencil {
             color: #666666;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    box-shadow: none;
+    border-radius: 6px;
+    margin-bottom: 40px;
+
+    tbody {
+      tr {
+        border: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:last-child {
+          td {
+            border-bottom: 1px solid #EBEBEB;
+          }
+        }
+
+        td {
+          width: 100%;
+          text-align: center;
+          vertical-align: middle;
+        }
+
+        td.options {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          button {
+            margin-left: 0;
+            margin: 0 10px;
           }
         }
       }
@@ -155,5 +221,11 @@ export const Form = styled.form`
     top: 0;
     right: 0;
     cursor: pointer;
+  }
+
+  @media only screen and (max-width: 768px) {
+    input {
+      width: 100%;
+    }
   }
 `;

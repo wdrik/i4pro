@@ -179,7 +179,7 @@ class Home extends Component {
 
     return(
       <Wrapper>
-        <img src={Bg} className="bg-image" alt="background image"/>
+        <img src={Bg} alt="Background" className="bg-image" />
 
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -201,7 +201,7 @@ class Home extends Component {
             <input type="email" 
               value={this.state.contactEmail}
               onChange={e => this.setState({ contactEmail: e.target.value })}
-              placeholder="Phone" 
+              placeholder="Email" 
             />
             
             <input type="phone" 
@@ -250,7 +250,7 @@ class Home extends Component {
             </tbody>
           </Table>
 
-          <Button onClick={this.openModal}>
+          <Button onClick={this.openModal} className="add-contact">
             <span>Adicionar contato</span> 
             <i className="fa fa-plus"></i>
           </Button>

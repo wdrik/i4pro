@@ -5,14 +5,14 @@
       "name": "Alexis Mccormick",
       "email": "alexis@email.com",
       "phone": "(11) 97026-7855",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": 1,
       "name": "Glenn May",
       "email": "glenn@email.com",
       "phone": "(11) 97026-7855",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": 2,
