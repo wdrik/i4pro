@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Modal from 'react-modal';
 
+import Bg from '../../assets/images/background.png';
+
 import { 
   Wrapper, 
   Container, 
@@ -177,6 +179,8 @@ class Home extends Component {
 
     return(
       <Wrapper>
+        <img src={Bg} className="bg-image" alt="background image"/>
+
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}

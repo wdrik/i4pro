@@ -48,27 +48,6 @@
       "email": "skylar@email.com",
       "phone": "(11) 97026-7855",
       "favorite": true
-    },
-    {
-      "id": 7,
-      "name": "Taylor Bright",
-      "email": "taylor@email.com",
-      "phone": "(11) 97026-7855",
-      "favorite": false
-    },
-    {
-      "id": 8,
-      "name": "Ray Landry",
-      "email": "ray@email.com",
-      "phone": "(11) 97026-7855",
-      "favorite": false
-    },
-    {
-      "id": 9,
-      "name": "Alex Gibson",
-      "email": "alex@email.com",
-      "phone": "(11) 97026-7855",
-      "favorite": false
     }
   ]
 }

@@ -7,6 +7,14 @@ export const Wrapper = styled.section`
   padding-top: 100px;
   display: flex;
   justify-content: center;
+
+  img.bg-image {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: .1;
+    max-width: 360px;
+  }
 `;
 
 export const Container = styled.section`
@@ -19,6 +27,7 @@ export const Table = styled.table`
   background: #FFFFFF;
   border: 1px solid #EBEBEB;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  position: relative;
 
   tbody {
     tr {
@@ -104,6 +113,7 @@ export const Button = styled.button`
   cursor: pointer;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
   transition: all ease-in-out .5s;
+  position: relative;
 
   &:hover { box-shadow: none }
 
