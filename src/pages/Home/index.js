@@ -42,23 +42,43 @@ class Home extends Component {
   state = {
     contacts: Json.contacts,
     modalIsOpen: false,
+    contactId: null,
     contactName: '',
     contactEmail: '',
     contactPhone: '',
     contactFavorite: false,
     error: false,
-    errorMessage: ''
+    errorMessage: '',
+    isUpdate: false
   }
 
-  openModal   = () => this.setState({ modalIsOpen: true });
-  closeModal  = () => this.setState({ modalIsOpen: false });
-
-  afterOpenModal = () => {
-    console.log(this.state);
+  /**
+   * Modal Commands
+   */
+  openModal = (isUpdate = false) => { 
+    this.setState({ 
+      modalIsOpen: true, 
+      isUpdate: isUpdate,
+      error: false
+    });
   }
 
+  closeModal = () => {
+    this.setState({ 
+      modalIsOpen: false ,
+      contactName: '', 
+      contactEmail: '', 
+      contactPhone: '',
+      contactId: '',
+    });
+  }
+
+  /**
+   * Add Contact
+   */
   handleAddContact = e => {
     e.preventDefault();
+
     if (
       this.state.contactName === '' || 
       this.state.contactEmail === ''  || 
@@ -68,7 +88,7 @@ class Home extends Component {
     }
 
     const newContact = {
-      id: Math.random(),
+      id: parseInt(Math.random() * 100) + 999,
       name: this.state.contactName,
       email: this.state.contactEmail,
       phone: this.state.contactPhone,
@@ -84,7 +104,10 @@ class Home extends Component {
     this.closeModal();
   }
 
-  handleRemoveContact = (id) => {
+  /**
+   * Remove Contact
+   */
+  handleRemoveContact = id => {
     const { contacts } = this.state;
 
     const leftOverContacts = contacts.filter(contact => contact.id !== id);
@@ -92,6 +115,36 @@ class Home extends Component {
     this.setState({ contacts: leftOverContacts });
   }
 
+  /**
+   * Update Contact
+   */
+  handleUpdateContact = e => {
+    e.preventDefault();
+
+    const { 
+      contacts, 
+      contactId, 
+      contactName,
+      contactEmail,
+      contactPhone 
+    } = this.state;
+
+    contacts.forEach(contact => {
+      if (contact.id === contactId) {
+        contact.name  = contactName;
+        contact.email = contactEmail;
+        contact.phone = contactPhone;
+      }
+    });
+
+    this.setState({ contacts: contacts });
+
+    this.closeModal();
+  }
+
+  /**
+   * Favorite Contact
+   */
   handleFavoriteContact = (id, isFavorite) => {
     const { contacts } = this.state;
 
@@ -104,6 +157,20 @@ class Home extends Component {
     this.setState({ contacts: contacts });
   }
 
+  /**
+   * Complete Fields
+   */
+  handleCompleteFields = contact => {
+    this.setState({ 
+      isUpdate: true,
+      contactId: contact.id, 
+      contactName: contact.name, 
+      contactEmail: contact.email, 
+      contactPhone: contact.phone,
+    });
+
+    this.openModal();
+  }
 
   render() {
     const { contacts } = this.state;
@@ -117,8 +184,8 @@ class Home extends Component {
           style={customStyles}
           contentLabel="Example Modal">
 
-          <Form onSubmit={e => this.handleAddContact(e)}>
-            <i class="fa fa-times" onClick={this.closeModal}></i>
+          <Form onSubmit={e => this.state.isUpdate ? this.handleAddContact(e) : this.handleUpdateContact(e)}>
+            <i className="fa fa-times" onClick={this.closeModal}></i>
             <h3>Adicionar Contato</h3>
 
             <input type="text" 
@@ -144,12 +211,10 @@ class Home extends Component {
             ) }
 
             <Button type="submit">
-              <span>Adicionar contato</span> 
+              <span>{this.state.isUpdate ? 'Adicionar contato' : 'Atualizar contato'}</span> 
               <i className="fa fa-plus"></i>
             </Button>
           </Form>
-
-        
         </Modal>
 
         <Container>
@@ -172,7 +237,7 @@ class Home extends Component {
                       <i className="fa fa-trash-o"></i>
                     </button>
                     
-                    <button>
+                    <button onClick={() => this.handleCompleteFields(contact)}>
                       <i className="fa fa-pencil"></i>
                     </button>
                   </td>
