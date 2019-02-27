@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.section`
   width: 100%;
-  height: auto;
+  height: 100vh;
   background: #F9F9F9;
   padding-top: 100px;
   display: flex;
